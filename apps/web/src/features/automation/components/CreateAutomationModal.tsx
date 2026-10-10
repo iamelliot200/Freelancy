@@ -310,6 +310,12 @@ export function CreateAutomationModal({ workspaceId, isOpen, onClose, onSubmit }
                               placeholder="e.g. invoice_reminder"
                               className="w-full px-3 py-2 bg-white border border-rose-200 rounded-lg focus:ring-2 focus:ring-rose-400 outline-none text-black text-sm shadow-sm"
                             />
+                            {/* Hidden field to map to messageTemplate for notify_owner */}
+                            <input
+                              type="hidden"
+                              {...register(`actionConfig.${index}.messageTemplate` as const)}
+                              value={watch(`actionConfig.${index}.templateKey` as const)}
+                            />
                           </div>
                           <div>
                             <label className="block text-xs font-medium text-black mb-1.5">Recipient</label>

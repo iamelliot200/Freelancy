@@ -11,7 +11,10 @@ import { getWorkspaces, workspaceKeys } from "../api";
 export function useWorkspaces() {
   return useQuery({
     queryKey: workspaceKeys.list(),
-    queryFn: () => getWorkspaces(),
+    queryFn: async () => {
+      const data = await getWorkspaces();
+      return (data || []).filter(ws => ws.id !== ":id");
+    },
     staleTime: 1000 * 60 * 5, // 5 minutes
   });
 }

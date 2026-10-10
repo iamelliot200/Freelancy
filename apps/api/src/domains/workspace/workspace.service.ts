@@ -222,12 +222,17 @@ export class WorkspaceService {
     try {
       const memberships = await this.memberRepo.listByUser(actorId);
       const result: Array<{ workspace: Workspace; role: WorkspaceRole }> = [];
+      const seenWorkspaceIds = new Set<string>();
 
       for (const membership of memberships) {
+        if (seenWorkspaceIds.has(membership.workspaceId)) {
+          continue;
+        }
         const workspace = await this.workspaceRepo.getById(
           membership.workspaceId,
         );
         if (workspace && !policies.isWorkspaceDeleted(workspace)) {
+          seenWorkspaceIds.add(membership.workspaceId);
           result.push({
             workspace,
             role: membership.role,

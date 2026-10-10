@@ -14,14 +14,14 @@ import type {
  * Get all workspaces for current user
  */
 export async function getWorkspaces(): Promise<WorkspaceResponse[]> {
-  return apiGet<WorkspaceResponse[]>("/workspaces");
+  return apiGet<WorkspaceResponse[]>("workspaces");
 }
 
 /**
  * Get single workspace by ID
  */
 export async function getWorkspace(id: string): Promise<WorkspaceResponse> {
-  return apiGet<WorkspaceResponse>(`/workspaces/${id}`);
+  return apiGet<WorkspaceResponse>(`workspaces/${id}`);
 }
 
 /**
@@ -30,7 +30,7 @@ export async function getWorkspace(id: string): Promise<WorkspaceResponse> {
 export async function createWorkspace(
   data: CreateWorkspaceInput,
 ): Promise<WorkspaceResponse> {
-  return apiPost<WorkspaceResponse>("/workspaces", data);
+  return apiPost<WorkspaceResponse>("workspaces", data);
 }
 
 /**
@@ -40,19 +40,19 @@ export async function updateWorkspace(
   id: string,
   data: UpdateWorkspaceInput,
 ): Promise<WorkspaceResponse> {
-  return apiPatch<WorkspaceResponse>(`/workspaces/${id}`, data);
+  return apiPatch<WorkspaceResponse>(`workspaces/${id}`, data);
 }
 
 /**
  * Delete workspace (soft delete)
  */
 export async function deleteWorkspace(id: string): Promise<WorkspaceResponse> {
-  return apiDelete<WorkspaceResponse>(`/workspaces/${id}`);
+  return apiDelete<WorkspaceResponse>(`workspaces/${id}`);
 }
 
 /**
  * Restore workspace (from soft delete)
  */
 export async function restoreWorkspace(id: string): Promise<WorkspaceResponse> {
-  return apiPost<WorkspaceResponse>(`/workspaces/${id}/restore`, {});
+  return apiPost<WorkspaceResponse>(`workspaces/${id}/restore`, {});
 }

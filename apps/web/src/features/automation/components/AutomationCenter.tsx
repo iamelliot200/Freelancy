@@ -148,7 +148,11 @@ export function AutomationCenter({ workspaceId }: { workspaceId: string }) {
                   {!isActive ? (
                     <button
                       disabled={isPending}
-                      onClick={() => activateMutation.mutate(automation.id)}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        activateMutation.mutate(automation.id);
+                      }}
                       className="flex-1 inline-flex items-center justify-center gap-1.5 rounded-xl bg-emerald-600 px-3 py-2 text-xs font-bold text-white hover:bg-emerald-700 disabled:opacity-50 transition shadow-xs"
                     >
                       <Play weight="bold" className="w-3.5 h-3.5 text-white" />
@@ -157,7 +161,11 @@ export function AutomationCenter({ workspaceId }: { workspaceId: string }) {
                   ) : (
                     <button
                       disabled={isPending}
-                      onClick={() => pauseMutation.mutate(automation.id)}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        pauseMutation.mutate(automation.id);
+                      }}
                       className="flex-1 inline-flex items-center justify-center gap-1.5 rounded-xl bg-amber-500 px-3 py-2 text-xs font-bold text-white hover:bg-amber-600 disabled:opacity-50 transition shadow-xs"
                     >
                       <Pause weight="bold" className="w-3.5 h-3.5 text-white" />
@@ -166,7 +174,11 @@ export function AutomationCenter({ workspaceId }: { workspaceId: string }) {
                   )}
                   <button
                     disabled={isPending}
-                    onClick={() => testMutation.mutate(automation.id)}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      testMutation.mutate(automation.id);
+                    }}
                     className="flex-1 inline-flex items-center justify-center gap-1.5 rounded-xl border border-[var(--color-hairline-soft)] bg-[var(--color-surface-soft)] px-3 py-2 text-xs font-semibold text-[var(--color-ink)] hover:bg-[var(--color-surface-muted)] disabled:opacity-50 transition"
                   >
                     <Flask weight="bold" className="w-3.5 h-3.5 text-[var(--color-ink)]" />
